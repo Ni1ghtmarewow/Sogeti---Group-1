@@ -1,0 +1,55 @@
+---
+- hosts: localhost
+  tasks:
+# 1. Execute terraform files to create infrastructure
+    - name: Execute ex.tf file, to create "Infrastructure"
+      shell: "cd Terraform/; terraform apply -auto-approve"
+# 2. Get Public IP address of WebServer
+
+    - name: Get Public IP address
+      shell: "cd Terraform/; terraform output publicIp"
+      register: ansiblePublicIp
+
+# 2.1 Format ansiblePublicIp as IP address output and save it in a new  variable
+
+    - name: Format ansiblePublicIp variable
+      set_fact:
+        varPublicIp: "{{ansiblePublicIp.stdout | regex_search('\\d{1,3}.\\d{1,3}.\\d{1,3}.\\d{1,3}')}}"
+
+- hosts: ec2
+  remote_user: ec2-user
+  become: yes
+  tasks:
+    - name: Infrastructure and Web Server created
+      command: 'whoami'
+      register: userName
+
+    - debug:
+        msg: "Infrastructure created and whoami result is: {{userName.stdout}}"
+
+- hosts: ec2
+  become: yes
+  tasks:
+    - name: Upgrade all installed packages in the Web Server
+      yum:
+        name: "*"
+        state: latest
+#        force_yum_get: yes
+
+- hosts: ec2
+  become: yes
+  tasks:
+    - name: Install Apache
+      yum:
+        name: httpd
+        state: present
+
+      - name: Reload Apache
+        service:
+          name: httpd
+          state: reloaded
+
+      - name: Restart Apache
+        service:
+          name: httpd
+          state: started 
