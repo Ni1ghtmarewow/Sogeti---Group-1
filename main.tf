@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "new_bucket" {
-  bucket = "github-terraform"
+  bucket = "githubterraformtest"
 
   object_lock_enabled = false
 
