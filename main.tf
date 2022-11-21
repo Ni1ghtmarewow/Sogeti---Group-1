@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "new_bucket" {
-  bucket = "githubterraformtest2"
+  bucket = "Automated_bucket_poc"
 
   object_lock_enabled = false
 
