@@ -13,7 +13,7 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "new_bucket" {
-  bucket = "Automated_bucket_poc"
+  bucket = "automated_bucket_poc"
 
   object_lock_enabled = false
 
