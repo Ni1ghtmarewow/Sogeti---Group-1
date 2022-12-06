@@ -1,8 +1,8 @@
 provider "aws" {
+  access_key = "AKIA2EIRQRN5ROBCGUP7"
+  secret_key = "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"
   alias = "main"
   #profile = "UniUser"
-  AWS_ACCESS_KEY_ID2 = "AKIA2EIRQRN5ROBCGUP7"
-  AWS_SECRET_ACCESS_KEY2 = "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"
   region = "eu-central-1"
 }
 
