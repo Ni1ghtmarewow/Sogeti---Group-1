@@ -35,6 +35,8 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID2: ${{ secrets.AWS_ACCESS_KEY_ID2 }}
+        AWS_SECRET_ACCESS_KEY2: ${{ secrets.AWS_SECRET_ACCESS_KEY2 }}
       run: terraform init -input=false
 
     # Generates an execution plan for Terraform
@@ -42,6 +44,8 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID2: ${{ secrets.AWS_ACCESS_KEY_ID2 }}
+        AWS_SECRET_ACCESS_KEY2: ${{ secrets.AWS_SECRET_ACCESS_KEY2 }}
       run: terraform plan -input=false
 
       # On push to "main", build or change infrastructure according to Terraform configuration files
@@ -50,4 +54,6 @@ jobs:
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID2: ${{ secrets.AWS_ACCESS_KEY_ID2 }}
+        AWS_SECRET_ACCESS_KEY2: ${{ secrets.AWS_SECRET_ACCESS_KEY2 }}
       run: terraform apply -auto-approve -input=false
