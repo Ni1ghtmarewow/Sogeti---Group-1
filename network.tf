@@ -41,7 +41,7 @@ resource "aws_subnet" "cicdsubnet" {
   vpc_id                  = "${aws_vpc.demovpc.id}"
   cidr_block             = "${var.subnet_cidr}"
   map_public_ip_on_launch = true
-  availability_zone = "eu-west-1a"
+  availability_zone = "eu-central-1a"
 
   tags = {
     Name = "CICD subnet"
@@ -54,7 +54,7 @@ resource "aws_subnet" "cicdsubnet2" {
   vpc_id                  = "${aws_vpc.demovpc.id}"
   cidr_block             = "${var.subnet1_cidr}"
   map_public_ip_on_launch = true
-  availability_zone = "eu-west-1b"
+  availability_zone = "eu-central-1b"
 
   tags = {
     Name = "CICD subnet 1"
